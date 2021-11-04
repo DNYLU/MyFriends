@@ -11,11 +11,12 @@ public class Menu {
     }
 
     public void printMenu() {
-        String printString = menuHeader + "\n";
+        System.out.println(leadText);
 
         for (int i = 0; i < menuItems.length; i++) {
-            printString += menuItems[i] + "\n";
-            System.out.println("\n" + printString);
+            if (menuItems[i] != null) {
+                System.out.println(menuItems[i]);
+            }
         }
     }
 
@@ -24,12 +25,13 @@ public class Menu {
         boolean validChoice = false;
         int choice = -1;
         while (!validChoice) {
-            System.out.println(leadText);
+            //System.out.println(leadText);
             if (scan.hasNextInt()) {
                 choice = scan.nextInt();
                 validChoice = true;
             } else {
                 scan.nextLine();
+                System.out.println("Invalid input");
             }
         }
         return choice;

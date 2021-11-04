@@ -6,13 +6,15 @@ public class Main {
     }
 
     public void run() {
-        String[] menuItems = new String[4];
+        String[] menuItems = new String[10]; // 10, da vi bruger 9 til quit, og index starter med 0
         Menu menu = new Menu("MENU", "Choose option:", menuItems);
 
-        menuItems[1] = "Choose ONE"; //Her siger vi hvad hver array indeholder på index 1
-        menuItems[2] = "Choose TWO"; //indeks 2
-        menuItems[3] = "Choose THREE"; //indeks 3
-        menuItems[0] = "QUIT"; //indeks 9
+        menuItems[1] = "1. Show list of friends";
+        menuItems[2] = "2. Enter new friend";
+        menuItems[3] = "3. Delete friend";
+        menuItems[4] = "4. Save list";
+        menuItems[5] = "5. Load list";
+        menuItems[9] = "\n9. QUIT";
 
         menu.printMenu();
 
@@ -34,17 +36,39 @@ public class Main {
                     checkChoice = true;
                     break;
                 case 9:
-                    System.out.println("You chose QUIT"); //Hvis bruger har skrevet 9 vil den sige dette
+                    System.out.println("Shutting down..."); //Hvis bruger har skrevet 9 vil den sige dette
                     checkChoice = true;
                     break;
 
                 default: // alt andet er forkert input
-                    System.out.println("\nIt has to be between 1,2,3 or 9");
+                    System.out.println("\nInput has to be either 1,2,3 or 9");
                     System.out.println("Try again");
                     menu.printMenu(); //så skal den printe menuen igen
                     choice = menu.readChoice(); //så skal den køre denne metode igen
                     checkChoice = false; // her er den så false fordi så betyder det man har tastet et andet integer end 1,2,3 eller 9.
             }
         } while (!checkChoice); //Den skal blive ved med at loop så længe den er false altså en integer som ikke er 1,2,3 eller 9
+
     }
+
+    public void showList() {
+
+    }
+
+    public void enterNewFriend() {
+
+    }
+
+    public void deleteFriend() {
+
+    }
+
+    public void saveList() {
+
+    }
+
+    public void loadList() {
+
+    }
+
 }
