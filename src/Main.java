@@ -1,10 +1,12 @@
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    private ArrayList<Friend> friendList;
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -60,21 +62,25 @@ public class Main {
     }
 
     public void showList() {
-        Scanner scan = null;
-        try {
-            scan = new Scanner(new File("friends.txt"));
-            while (scan.hasNextLine()) { // 2.
-                String line = scan.nextLine();
-                System.out.println(line);
 
-            }
-            scan.close(); // close inputstream to save resources
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        }
     }
 
-    public void enterNewFriend() {
+    public ArrayList<Friend> enterNewFriend() {
+
+    }
+
+
+    public boolean deleteFriend(String friendName) {
+        for (Friend friend : friendList) {
+            if (friend.getName().equals(friendName)) {
+                friendList.remove(friend);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void saveList() {
         Scanner scan = new Scanner(System.in);
 
         try {
@@ -87,23 +93,25 @@ public class Main {
 
             PrintStream outFile = new PrintStream(new File("friends.txt")); // Laver en ny fil
             Friend friend = new Friend(friendName, friendPhone, friendEmail);
-            outFile.println(friend.toString()); //Slet
+            outFile.println(friend.toString()); //Virker ikke på denne måde går jeg ud fra
         } catch (FileNotFoundException e) {
             System.out.println("Unable to open file for writing");
         }
     }
 
-
-    public void deleteFriend() {
-
-    }
-
-    public void saveList() {
-
-    }
-
     public void loadList() {
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File("friends.txt"));
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                System.out.println(line);
 
+            }
+            scan.close(); // close inputstream to save resources
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
     }
 }
 
