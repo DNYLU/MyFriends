@@ -3,8 +3,10 @@ public class Friend {
     private int phone;
     private String email;
 
-    public Friend(String name) {
+    public Friend(String name, int phone, String email) {
         this.name = name;
+        this.phone = phone;
+        this.email = email;
     }
 
     public void setName(String name) {

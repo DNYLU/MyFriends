@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -24,17 +30,19 @@ public class Main {
         do {
             switch (choice) { //Laver en switch som kontroller brugerens input
                 case 1:
-                    System.out.println("You chose 1"); //Hvis bruger har skrevet 1 vil den sige dette
+                    System.out.println("Showing list of friends:"); //Hvis bruger har skrevet 1 vil den sige dette
                     checkChoice = true;
-                    break;
+                    showList();
+                    run();
                 case 2:
-                    System.out.println("You chose 2"); // Hvis bruger har skrevet 2 vil den sige dette
+                    System.out.println("Creating new friend..."); // Hvis bruger har skrevet 2 vil den sige dette
                     checkChoice = true;
-                    break;
+                    enterNewFriend();
+                    run();
                 case 3:
                     System.out.println("You chose 3"); // Hvis bruger har skrevet 3 vil den sige dette
                     checkChoice = true;
-                    break;
+                    run();
                 case 9:
                     System.out.println("Shutting down..."); //Hvis bruger har skrevet 9 vil den sige dette
                     checkChoice = true;
@@ -52,12 +60,39 @@ public class Main {
     }
 
     public void showList() {
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File("friends.txt"));
+            while (scan.hasNextLine()) { // 2.
+                String line = scan.nextLine();
+                System.out.println(line);
 
+            }
+            scan.close(); // close inputstream to save resources
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
     }
 
     public void enterNewFriend() {
+        Scanner scan = new Scanner(System.in);
 
+        try {
+            System.out.println("Enter your new friends name:");
+            String friendName = scan.nextLine();
+            System.out.println("Enter " + friendName + "'s phone number:");
+            int friendPhone = scan.nextInt();
+            System.out.println("Enter " + friendName + "'s email:");
+            String friendEmail = scan.nextLine();
+
+            PrintStream outFile = new PrintStream(new File("friends.txt")); // Laver en ny fil
+            Friend friend = new Friend(friendName, friendPhone, friendEmail);
+            outFile.println(friend.toString()); //Slet
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to open file for writing");
+        }
     }
+
 
     public void deleteFriend() {
 
@@ -70,5 +105,5 @@ public class Main {
     public void loadList() {
 
     }
-
 }
+
