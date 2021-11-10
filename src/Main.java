@@ -39,12 +39,18 @@ public class Main {
                 case 2:
                     System.out.println("Creating new friend..."); // Hvis bruger har skrevet 2 vil den sige dette
                     checkChoice = true;
-                    enterNewFriend();
+                    //enterNewFriend();
                     run();
                 case 3:
                     System.out.println("You chose 3"); // Hvis bruger har skrevet 3 vil den sige dette
                     checkChoice = true;
                     run();
+                case 4:
+                    System.out.println("Save list:");
+                    saveList();
+                case 5:
+                    System.out.println("Load list");
+                    loadList();
                 case 9:
                     System.out.println("Shutting down..."); //Hvis bruger har skrevet 9 vil den sige dette
                     checkChoice = true;
@@ -65,9 +71,8 @@ public class Main {
 
     }
 
-    public ArrayList<Friend> enterNewFriend() {
-
-    }
+    //public ArrayList<Friend> enterNewFriend() {
+    //}
 
 
     public boolean deleteFriend(String friendName) {
@@ -93,7 +98,7 @@ public class Main {
 
             PrintStream outFile = new PrintStream(new File("friends.txt")); // Laver en ny fil
             Friend friend = new Friend(friendName, friendPhone, friendEmail);
-            outFile.println(friend.toString()); //Virker ikke på denne måde går jeg ud fra
+            outFile.println(friend); //Virker ikke på denne måde går jeg ud fra
         } catch (FileNotFoundException e) {
             System.out.println("Unable to open file for writing");
         }

@@ -32,4 +32,8 @@ public class Friend {
     public String getEmail() {
         return email;
     }
+
+    public String toString() {
+        return this.name;
+    }
 }
